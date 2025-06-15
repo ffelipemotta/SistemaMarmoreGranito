@@ -1,8 +1,15 @@
 # Sistema Mamore Granito
 
-![Banner do Sistema](https://raw.githubusercontent.com/seu-usuario/SistemaMamoreGranito/main/wwwroot/images/banner.png)
-
 > Sistema de gerenciamento de estoque para marmoraria, desenvolvido em ASP.NET Core MVC.
+
+## Integrantes do projeto: 
+
+- THALES MENINI FERRARI
+- TIAGO CEZAR SILVA E SILVA
+- FELIPE MOTTA NEVES 
+- FILIPE ANTÔNIO LINS NOÉ
+
+
 
 O Sistema Mamore Granito é uma solução completa para gerenciamento de marmorarias, permitindo o controle de estoque de blocos e chapas de mármore e granito, além de gerenciar todo o processo de serragem. O sistema foi desenvolvido para otimizar o controle de estoque e melhorar a eficiência operacional das marmorarias.
 
@@ -90,7 +97,7 @@ Siga estas instruções para obter uma cópia do projeto em funcionamento na sua
 
 ### Pré-requisitos
 
-- [.NET 7.0 SDK](https://dotnet.microsoft.com/download/dotnet/7.0)
+- [.NET 8.0 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
 - [MySQL Server](https://dev.mysql.com/downloads/mysql/)
 - [Visual Studio 2022](https://visualstudio.microsoft.com/pt-br/) ou [VS Code](https://code.visualstudio.com/)
 - [Git](https://git-scm.com/)
@@ -99,7 +106,7 @@ Siga estas instruções para obter uma cópia do projeto em funcionamento na sua
 
 1. **Clone o repositório**
    ```bash
-   git clone https://github.com/seu-usuario/SistemaMamoreGranito.git
+   git clone https://github.com/ffelipemotta/SistemaMamoreGranito.git
    ```
 
 2. **Configure o banco de dados**
@@ -140,24 +147,6 @@ Siga estas instruções para obter uma cópia do projeto em funcionamento na sua
 
 ---
 
-## 🤝 Como Contribuir
-
-1. Faça um Fork do projeto
-2. Crie uma Branch para sua Feature (`git checkout -b feature/AmazingFeature`)
-3. Commit suas mudanças (`git commit -m 'Add some AmazingFeature'`)
-4. Push para a Branch (`git push origin feature/AmazingFeature`)
-5. Abra um Pull Request
-
----
-
-## 📝 Licença
-
-Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
-
----
-
 ## 📧 Contato
 
-Seu Nome - [@seu_twitter](https://twitter.com/seu_twitter) - seu.email@exemplo.com
-
-Link do Projeto: [https://github.com/seu-usuario/SistemaMamoreGranito](https://github.com/seu-usuario/SistemaMamoreGranito) 
+Link do Projeto: [https://github.com/ffelipemotta/SistemaMamoreGranito]
