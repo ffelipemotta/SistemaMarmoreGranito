@@ -1,0 +1,200 @@
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<div class="container-fluid py-5">
+    <!-- Cabeçalho -->
+    <div class="row mb-5">
+        <div class="col-12 text-center">
+            <h1 class="display-4 fw-bold text-gradient">Sistema Mamore Granito</h1>
+            <p class="lead text-light">Gerencie seu estoque de mármores e granitos</p>
+        </div>
+    </div>
+
+    <!-- Opções de Estoque -->
+    <div class="row justify-content-center mb-5">
+        <div class="col-12 col-lg-10">
+            <div class="card bg-dark border-0 shadow-lg">
+                <div class="card-body p-5">
+                    <h2 class="text-center mb-4 text-light">
+                        <i class="fas fa-boxes text-primary me-2"></i>
+                        Gerenciamento de Estoque
+                    </h2>
+                    
+                    <div class="row g-4">
+                        <!-- Blocos -->
+                        <div class="col-md-4">
+                            <div class="card h-100 bg-gradient-dark border-0 hover-card">
+                                <div class="card-body text-center p-4">
+                                    <div class="icon-wrapper mb-3">
+                                        <i class="fas fa-cube fa-3x text-primary"></i>
+                                    </div>
+                                    <h3 class="card-title h4 mb-3 text-light">Blocos</h3>
+                                    <p class="card-text mb-4 text-light-50">Gerencie os blocos de mármore e granito no estoque.</p>
+                                    <div class="d-grid gap-2">
+                                        <a asp-controller="Bloco" asp-action="Create" class="btn btn-primary btn-lg">
+                                            <i class="fas fa-plus me-2"></i>Novo Bloco
+                                        </a>
+                                        <a asp-controller="Bloco" asp-action="Index" class="btn btn-outline-light">
+                                            <i class="fas fa-list me-2"></i>Ver Blocos
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Chapas -->
+                        <div class="col-md-4">
+                            <div class="card h-100 bg-gradient-dark border-0 hover-card">
+                                <div class="card-body text-center p-4">
+                                    <div class="icon-wrapper mb-3">
+                                        <i class="fas fa-layer-group fa-3x text-primary"></i>
+                                    </div>
+                                    <h3 class="card-title h4 mb-3 text-light">Chapas</h3>
+                                    <p class="card-text mb-4 text-light-50">Gerencie as chapas de mármore e granito no estoque.</p>
+                                    <div class="d-grid gap-2">
+                                        <a asp-controller="Chapa" asp-action="Create" class="btn btn-primary btn-lg">
+                                            <i class="fas fa-plus me-2"></i>Nova Chapa
+                                        </a>
+                                        <a asp-controller="Chapa" asp-action="Index" class="btn btn-outline-light">
+                                            <i class="fas fa-list me-2"></i>Ver Chapas
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Processos de Serragem -->
+                        <div class="col-md-4">
+                            <div class="card h-100 bg-gradient-dark border-0 hover-card">
+                                <div class="card-body text-center p-4">
+                                    <div class="icon-wrapper mb-3">
+                                        <i class="fas fa-cut fa-3x text-primary"></i>
+                                    </div>
+                                    <h3 class="card-title h4 mb-3 text-light">Processos de Serragem</h3>
+                                    <p class="card-text mb-4 text-light-50">Gerencie os processos de serragem de blocos.</p>
+                                    <div class="d-grid gap-2">
+                                        <a asp-controller="ProcessoSerragem" asp-action="Create" class="btn btn-primary btn-lg">
+                                            <i class="fas fa-plus me-2"></i>Novo Processo
+                                        </a>
+                                        <a asp-controller="ProcessoSerragem" asp-action="Index" class="btn btn-outline-light">
+                                            <i class="fas fa-list me-2"></i>Ver Processos
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Estatísticas -->
+    <div class="row justify-content-center">
+        <div class="col-12 col-lg-10">
+            <div class="card bg-dark border-0 shadow-lg">
+                <div class="card-body p-5">
+                    <h2 class="text-center mb-4 text-light">
+                        <i class="fas fa-chart-bar text-primary me-2"></i>
+                        Estatísticas Rápidas
+                    </h2>
+                    <div class="row g-4">
+                        <div class="col-md-4">
+                            <div class="stat-card text-center p-4">
+                                <div class="icon-wrapper mb-3">
+                                    <i class="fas fa-cube fa-2x text-primary"></i>
+                                </div>
+                                <h3 class="display-4 mb-2 text-light">@ViewBag.BlocosDisponiveis</h3>
+                                <p class="text-light-50 mb-0">Blocos Disponíveis</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="stat-card text-center p-4">
+                                <div class="icon-wrapper mb-3">
+                                    <i class="fas fa-layer-group fa-2x text-primary"></i>
+                                </div>
+                                <h3 class="display-4 mb-2 text-light">@ViewBag.ChapasEmEstoque</h3>
+                                <p class="text-light-50 mb-0">Chapas em Estoque</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="stat-card text-center p-4">
+                                <div class="icon-wrapper mb-3">
+                                    <i class="fas fa-cut fa-2x text-primary"></i>
+                                </div>
+                                <h3 class="display-4 mb-2 text-light">@ViewBag.ProcessosSerragem</h3>
+                                <p class="text-light-50 mb-0">Processos de Serragem</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Styles {
+    <style>
+        .text-gradient {
+            background: linear-gradient(45deg, #0d6efd, #0dcaf0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .bg-gradient-dark {
+            background: linear-gradient(145deg, #1a1a1a, #2d2d2d);
+        }
+
+        .hover-card {
+            transition: all 0.3s ease;
+        }
+
+        .hover-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .icon-wrapper {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(13, 110, 253, 0.1);
+            border-radius: 50%;
+        }
+
+        .stat-card {
+            background: linear-gradient(145deg, #1a1a1a, #2d2d2d);
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .btn {
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .display-4 {
+            font-weight: 600;
+        }
+
+        .text-light-50 {
+            color: rgba(255, 255, 255, 0.8) !important;
+        }
+
+        .btn-outline-light:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+    </style>
+} 

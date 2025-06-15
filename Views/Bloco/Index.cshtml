@@ -1,0 +1,54 @@
+@model IEnumerable<SistemaMamoreGranito.Models.Bloco>
+
+@{
+    ViewData["Title"] = "Blocos";
+}
+
+<h1>Blocos</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Novo Bloco</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.NomeMaterial)</th>
+            <th>@Html.DisplayNameFor(model => model.TipoMaterial)</th>
+            <th>@Html.DisplayNameFor(model => model.Altura)</th>
+            <th>@Html.DisplayNameFor(model => model.Largura)</th>
+            <th>@Html.DisplayNameFor(model => model.Comprimento)</th>
+            <th>@Html.DisplayNameFor(model => model.Peso)</th>
+            <th>@Html.DisplayNameFor(model => model.Disponivel)</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.NomeMaterial)</td>
+                <td>@Html.DisplayFor(modelItem => item.TipoMaterial)</td>
+                <td>@item.Altura.ToString("F2") cm</td>
+                <td>@item.Largura.ToString("F2") cm</td>
+                <td>@item.Comprimento.ToString("F2") cm</td>
+                <td>@item.Peso.ToString("F2") kg</td>
+                <td>
+                    @if (item.Disponivel)
+                    {
+                        <span class="badge bg-success">Disponível</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-danger">Indisponível</span>
+                    }
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm">Editar</a>
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info btn-sm">Detalhes</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Excluir</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table> 

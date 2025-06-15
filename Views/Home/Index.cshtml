@@ -1,0 +1,37 @@
+﻿@{
+    ViewData["Title"] = "Página Inicial";
+}
+
+<div class="container">
+    <div class="row justify-content-center align-items-center min-vh-100">
+        <div class="col-md-8 text-center">
+            <h1 class="display-4 mb-4">Bem-vindo ao Sistema Mamore Granito</h1>
+            <p class="lead mb-5">Sistema de gerenciamento de estoque de mármores e granitos</p>
+            
+            <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
+                <a asp-controller="Usuario" asp-action="Create" class="btn btn-primary btn-lg px-4 gap-3">
+                    <i class="fas fa-user-plus"></i> Criar Conta
+                </a>
+                <a asp-controller="Usuario" asp-action="Login" class="btn btn-outline-primary btn-lg px-4">
+                    <i class="fas fa-sign-in-alt"></i> Entrar
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Styles {
+    <style>
+        .min-vh-100 {
+            min-height: 100vh;
+        }
+        .btn-lg {
+            padding: 1rem 2rem;
+            font-size: 1.25rem;
+        }
+        .lead {
+            font-size: 1.5rem;
+            font-weight: 300;
+        }
+    </style>
+}

@@ -1,0 +1,89 @@
+@model SistemaMamoreGranito.Models.Chapa
+
+@{
+    ViewData["Title"] = "Detalhes da Chapa";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="card bg-dark text-light">
+                <div class="card-header">
+                    <h2 class="mb-0">@ViewData["Title"]</h2>
+                </div>
+                <div class="card-body">
+                    <dl class="row">
+                        <dt class="col-sm-3">@Html.DisplayNameFor(model => model.NomeMaterial)</dt>
+                        <dd class="col-sm-9">@Html.DisplayFor(model => model.NomeMaterial)</dd>
+
+                        <dt class="col-sm-3">@Html.DisplayNameFor(model => model.TipoMaterial)</dt>
+                        <dd class="col-sm-9">@Html.DisplayFor(model => model.TipoMaterial)</dd>
+
+                        <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Espessura)</dt>
+                        <dd class="col-sm-9">@Html.DisplayFor(model => model.Espessura) cm</dd>
+
+                        <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Altura)</dt>
+                        <dd class="col-sm-9">@Html.DisplayFor(model => model.Altura) cm</dd>
+
+                        <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Largura)</dt>
+                        <dd class="col-sm-9">@Html.DisplayFor(model => model.Largura) cm</dd>
+
+                        <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Peso)</dt>
+                        <dd class="col-sm-9">@Html.DisplayFor(model => model.Peso) kg</dd>
+
+                        <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Valor)</dt>
+                        <dd class="col-sm-9">R$ @Html.DisplayFor(model => model.Valor)</dd>
+
+                        <dt class="col-sm-3">@Html.DisplayNameFor(model => model.BlocoOrigem)</dt>
+                        <dd class="col-sm-9">
+                            @if (Model.BlocoOrigem != null)
+                            {
+                                @($"{Model.BlocoOrigem.NomeMaterial} - {Model.BlocoOrigem.TipoMaterial} ({Model.BlocoOrigem.Altura}x{Model.BlocoOrigem.Largura}x{Model.BlocoOrigem.Comprimento}cm)")
+                            }
+                            else
+                            {
+                                <span class="text-muted">Não especificado</span>
+                            }
+                        </dd>
+
+                        <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Observacoes)</dt>
+                        <dd class="col-sm-9">
+                            @if (!string.IsNullOrEmpty(Model.Observacoes))
+                            {
+                                @Html.DisplayFor(model => model.Observacoes)
+                            }
+                            else
+                            {
+                                <span class="text-muted">Nenhuma observação</span>
+                            }
+                        </dd>
+
+                        <dt class="col-sm-3">@Html.DisplayNameFor(model => model.DataEntrada)</dt>
+                        <dd class="col-sm-9">@Html.DisplayFor(model => model.DataEntrada)</dd>
+
+                        <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Disponivel)</dt>
+                        <dd class="col-sm-9">
+                            @if (Model.Disponivel)
+                            {
+                                <span class="badge bg-success">Disponível</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-danger">Indisponível</span>
+                            }
+                        </dd>
+                    </dl>
+
+                    <div class="mt-4">
+                        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">
+                            <i class="fas fa-edit"></i> Editar
+                        </a>
+                        <a asp-action="Index" class="btn btn-secondary">
+                            <i class="fas fa-arrow-left"></i> Voltar
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 

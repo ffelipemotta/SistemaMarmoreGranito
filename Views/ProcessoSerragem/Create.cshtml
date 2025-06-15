@@ -1,0 +1,135 @@
+@model SistemaMamoreGranito.Models.ProcessoSerragem
+
+@{
+    ViewData["Title"] = "Novo Processo de Serragem";
+}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card material-form">
+                <div class="card-header">
+                    <h2 class="text-center mb-0">
+                        <i class="fas fa-cut"></i> Novo Processo de Serragem
+                    </h2>
+                </div>
+                <div class="card-body">
+                    @if (TempData["Erro"] != null)
+                    {
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <i class="fas fa-exclamation-circle"></i> @TempData["Erro"]
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    }
+
+                    @if (TempData["Sucesso"] != null)
+                    {
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <i class="fas fa-check-circle"></i> @TempData["Sucesso"]
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    }
+
+                    <form asp-action="Create" method="post" id="formProcessoSerragem">
+                        @Html.AntiForgeryToken()
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                        <div class="form-group mb-3">
+                            <label asp-for="BlocoId" class="control-label">Bloco</label>
+                            <select asp-for="BlocoId" class="form-select" id="blocoSelect" required>
+                                <option value="">Selecione um bloco...</option>
+                                @foreach (var bloco in ViewBag.BlocosDisponiveis)
+                                {
+                                    <option value="@bloco.Id" 
+                                            data-altura="@bloco.Altura"
+                                            data-largura="@bloco.Largura"
+                                            data-comprimento="@bloco.Comprimento">
+                                        @bloco.NomeMaterial - @bloco.TipoMaterial (@bloco.Altura.ToString("N2") x @bloco.Largura.ToString("N2") x @bloco.Comprimento.ToString("N2") cm)
+                                    </option>
+                                }
+                            </select>
+                            <span asp-validation-for="BlocoId" class="text-danger"></span>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    <label asp-for="EspessuraChapa" class="control-label">Espessura da Chapa (cm)</label>
+                                    <input asp-for="EspessuraChapa" class="form-control" type="number" step="0.1" id="espessuraChapa" required min="0.1" max="100" />
+                                    <span asp-validation-for="EspessuraChapa" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    <label asp-for="QuantidadeChapas" class="control-label">Quantidade de Chapas</label>
+                                    <input asp-for="QuantidadeChapas" class="form-control" type="number" min="1" max="1000" id="quantidadeChapas" required />
+                                    <small class="text-muted" id="quantidadeMaximaInfo"></small>
+                                    <span asp-validation-for="QuantidadeChapas" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label asp-for="Observacoes" class="control-label">Observações</label>
+                            <textarea asp-for="Observacoes" class="form-control" rows="3" placeholder="Informações adicionais sobre o processo..."></textarea>
+                            <span asp-validation-for="Observacoes" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group text-center">
+                            <button type="submit" class="btn btn-primary btn-lg px-5" id="btnSubmit">
+                                <i class="fas fa-save"></i> Iniciar Processo
+                            </button>
+                            <a asp-action="Index" class="btn btn-secondary btn-lg px-5">
+                                <i class="fas fa-arrow-left"></i> Voltar
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    
+    <script>
+        function calcularQuantidadeMaxima() {
+            const blocoSelect = document.getElementById('blocoSelect');
+            const espessuraInput = document.getElementById('espessuraChapa');
+            const quantidadeInput = document.getElementById('quantidadeChapas');
+            const quantidadeMaximaInfo = document.getElementById('quantidadeMaximaInfo');
+            
+            const selectedOption = blocoSelect.options[blocoSelect.selectedIndex];
+            const espessura = parseFloat(espessuraInput.value);
+            
+            if (selectedOption.value && espessura > 0) {
+                const altura = parseFloat(selectedOption.dataset.altura);
+                const quantidadeMaxima = Math.floor(altura / espessura);
+                
+                quantidadeMaximaInfo.textContent = `Quantidade máxima possível: ${quantidadeMaxima} chapas`;
+                quantidadeInput.max = quantidadeMaxima;
+                
+                if (parseInt(quantidadeInput.value) > quantidadeMaxima) {
+                    quantidadeInput.value = quantidadeMaxima;
+                }
+            } else {
+                quantidadeMaximaInfo.textContent = '';
+            }
+        }
+
+        document.getElementById('blocoSelect').addEventListener('change', calcularQuantidadeMaxima);
+        document.getElementById('espessuraChapa').addEventListener('input', calcularQuantidadeMaxima);
+
+        // Prevenir múltiplos envios do formulário
+        document.getElementById('formProcessoSerragem').addEventListener('submit', function(e) {
+            const btnSubmit = document.getElementById('btnSubmit');
+            if (btnSubmit.disabled) {
+                e.preventDefault();
+                return;
+            }
+            btnSubmit.disabled = true;
+            btnSubmit.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Processando...';
+        });
+    </script>
+} 

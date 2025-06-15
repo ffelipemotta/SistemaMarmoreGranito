@@ -1,0 +1,58 @@
+@model SistemaMamoreGranito.Models.ProcessoSerragem
+
+@{
+    ViewData["Title"] = "Detalhes do Processo de Serragem";
+}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="text-center mb-0">
+                        <i class="fas fa-cut"></i> Detalhes do Processo de Serragem
+                    </h2>
+                </div>
+                <div class="card-body">
+                    <dl class="row">
+                        <dt class="col-sm-4">Data do Processo</dt>
+                        <dd class="col-sm-8">@Model.DataProcesso.ToString("dd/MM/yyyy HH:mm")</dd>
+
+                        <dt class="col-sm-4">Bloco</dt>
+                        <dd class="col-sm-8">
+                            @Model.Bloco.NomeMaterial - @Model.Bloco.TipoMaterial
+                            <br />
+                            <small class="text-muted">
+                                Dimensões: @Model.Bloco.Altura.ToString("N2") x @Model.Bloco.Largura.ToString("N2") x @Model.Bloco.Comprimento.ToString("N2") cm
+                            </small>
+                        </dd>
+
+                        <dt class="col-sm-4">Espessura da Chapa</dt>
+                        <dd class="col-sm-8">@Model.EspessuraChapa.ToString("N2") cm</dd>
+
+                        <dt class="col-sm-4">Quantidade de Chapas</dt>
+                        <dd class="col-sm-8">@Model.QuantidadeChapas</dd>
+
+                        <dt class="col-sm-4">Volume Total</dt>
+                        <dd class="col-sm-8">@Model.VolumeTotalChapas.ToString("N2") cm³</dd>
+
+                        <dt class="col-sm-4">Peso Total</dt>
+                        <dd class="col-sm-8">@Model.PesoTotalChapas.ToString("N2") kg</dd>
+
+                        @if (!string.IsNullOrEmpty(Model.Observacoes))
+                        {
+                            <dt class="col-sm-4">Observações</dt>
+                            <dd class="col-sm-8">@Model.Observacoes</dd>
+                        }
+                    </dl>
+
+                    <div class="text-center mt-4">
+                        <a asp-action="Index" class="btn btn-secondary">
+                            <i class="fas fa-arrow-left"></i> Voltar
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 

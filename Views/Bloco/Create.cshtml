@@ -1,0 +1,140 @@
+@model SistemaMamoreGranito.Models.Bloco
+
+@{
+    ViewData["Title"] = "Novo Bloco";
+}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card material-form">
+                <div class="card-header">
+                    <h2 class="text-center mb-0">
+                        <i class="fas fa-cube"></i> Novo Bloco
+                    </h2>
+                </div>
+                <div class="card-body">
+                    <form asp-action="Create">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    <label asp-for="NomeMaterial" class="control-label">Nome do Material</label>
+                                    <input asp-for="NomeMaterial" class="form-control" placeholder="Ex: Mármore Carrara" />
+                                    <span asp-validation-for="NomeMaterial" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    <label asp-for="TipoMaterial" class="control-label">Tipo de Material</label>
+                                    <select asp-for="TipoMaterial" class="form-control">
+                                        <option value="">Selecione...</option>
+                                        <option value="Mármore">Mármore</option>
+                                        <option value="Granito">Granito</option>
+                                    </select>
+                                    <span asp-validation-for="TipoMaterial" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group mb-3">
+                                    <label asp-for="Altura" class="control-label">Altura (cm)</label>
+                                    <input asp-for="Altura" class="form-control" type="number" step="0.01" />
+                                    <span asp-validation-for="Altura" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group mb-3">
+                                    <label asp-for="Largura" class="control-label">Largura (cm)</label>
+                                    <input asp-for="Largura" class="form-control" type="number" step="0.01" />
+                                    <span asp-validation-for="Largura" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group mb-3">
+                                    <label asp-for="Comprimento" class="control-label">Comprimento (cm)</label>
+                                    <input asp-for="Comprimento" class="form-control" type="number" step="0.01" />
+                                    <span asp-validation-for="Comprimento" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    <label asp-for="Peso" class="control-label">Peso (kg)</label>
+                                    <input asp-for="Peso" class="form-control" type="number" step="0.01" />
+                                    <span asp-validation-for="Peso" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    <label asp-for="DataEntrada" class="control-label">Data de Entrada</label>
+                                    <input asp-for="DataEntrada" class="form-control" type="date" />
+                                    <span asp-validation-for="DataEntrada" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    <label asp-for="PedreiraOrigem" class="control-label">Pedreira de Origem</label>
+                                    <input asp-for="PedreiraOrigem" class="form-control" placeholder="Ex: Pedreira São João" />
+                                    <span asp-validation-for="PedreiraOrigem" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    <label asp-for="NumeroNotaFiscal" class="control-label">Número da Nota Fiscal</label>
+                                    <input asp-for="NumeroNotaFiscal" class="form-control" placeholder="Ex: 123456" />
+                                    <span asp-validation-for="NumeroNotaFiscal" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    <label asp-for="ValorCompra" class="control-label">Valor de Compra (R$)</label>
+                                    <input asp-for="ValorCompra" class="form-control" type="number" step="0.01" />
+                                    <span asp-validation-for="ValorCompra" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    <div class="form-check mt-4">
+                                        <input asp-for="Disponivel" class="form-check-input" />
+                                        <label asp-for="Disponivel" class="form-check-label">Disponível para venda</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label asp-for="Observacoes" class="control-label">Observações</label>
+                            <textarea asp-for="Observacoes" class="form-control" rows="3" placeholder="Informações adicionais sobre o bloco..."></textarea>
+                            <span asp-validation-for="Observacoes" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group text-center">
+                            <button type="submit" class="btn btn-primary btn-lg px-5">
+                                <i class="fas fa-save"></i> Salvar
+                            </button>
+                            <a asp-action="Index" class="btn btn-secondary btn-lg px-5">
+                                <i class="fas fa-arrow-left"></i> Voltar
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+} 

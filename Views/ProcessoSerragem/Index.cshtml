@@ -1,0 +1,54 @@
+@model IEnumerable<SistemaMamoreGranito.Models.ProcessoSerragem>
+
+@{
+    ViewData["Title"] = "Processos de Serragem";
+}
+
+<div class="container">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>
+            <i class="fas fa-cut"></i> Processos de Serragem
+        </h1>
+        <a asp-action="Create" class="btn btn-primary">
+            <i class="fas fa-plus"></i> Novo Processo
+        </a>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Data</th>
+                            <th>Bloco</th>
+                            <th>Espessura</th>
+                            <th>Quantidade</th>
+                            <th>Volume Total</th>
+                            <th>Peso Total</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.DataProcesso.ToString("dd/MM/yyyy HH:mm")</td>
+                                <td>@item.Bloco.NomeMaterial - @item.Bloco.TipoMaterial</td>
+                                <td>@item.EspessuraChapa.ToString("N2") cm</td>
+                                <td>@item.QuantidadeChapas</td>
+                                <td>@item.VolumeTotalChapas.ToString("N2") cm³</td>
+                                <td>@item.PesoTotalChapas.ToString("N2") kg</td>
+                                <td>
+                                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info btn-sm">
+                                        <i class="fas fa-info-circle"></i> Detalhes
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div> 
